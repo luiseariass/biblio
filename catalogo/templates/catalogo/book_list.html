@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Author List</h1>
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    {% if filter.qs %}    
+      {% for obj in filter.qs %}
+          {{ obj.title }} - {{ obj.format }}<br />
+      {% endfor %}
+    {% else %}
+      {% for obj in books%}
+          {{ obj.title }} - {{ obj.format }}<br />
+      {% endfor %}
+    {% endif %}
+{% endblock %}

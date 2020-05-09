@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+				{{filtroautor.form}}
+		    <button class="btn btn-primary" type="submit">Buscar</button>
+		  </form>
+
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Nombre</th>
+					<th>Link a su biografía y catálogo de libros</th>
+				{% for obj in authors %}
+				<tr>
+					<td>{{ obj.name }}</td>					
+					<td><a class="btn btn-sm btn-info" href="{{ obj.get_absolute_url }}"> Visitar</a></td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

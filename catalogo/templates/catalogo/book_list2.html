@@ -1,0 +1,81 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<body style="background-color:#F8F8F8">
+	<br>
+		<br>
+
+<div class="row">
+	<div  class="col-md">
+		<div  class="card card-body">
+			<h5>Colabore con la biblioteca:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Cargue un libro</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Recomendar un libro</a>
+
+		</div>
+	</div>
+	<div class="col-md">
+		<div  class="card card-body">
+			<h5>Información de contacto</h5>
+			<hr>
+			<p>Email: bibliotecajuvenilpj@gmail.com</p>
+			<p>Phone: +58-(414)7728253 </p>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div  class="card card-body">
+			<h5>Libros disponibles:</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">52</h1>
+		</div>
+	</div>
+</div>
+<br>
+
+
+<div class="row">
+	<div class="col">
+		<div  class="card card-body">
+
+			<form method="GET">
+				{{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Buscar</button>
+		  </form>
+
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div  class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Título</th>
+					<th>Autor</th>
+					<th>Género</th>
+					<th>Formato</th>
+					<th>Archivo</th>
+
+				{% for obj in books %}
+
+				<tr>
+					<td><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></td>
+					<td><a href="{{ obj.author.get_absolute_url }}">{{ obj.author.name }}</a> </td>
+					<td> {{obj.genre.all|join:", "}}</td>
+					<td>{{obj.format}}</td>
+					<td><a class="btn btn-sm btn-info" href="obj.file.url"> Descargar </a></td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+{% endblock %}

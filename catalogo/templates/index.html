@@ -1,0 +1,115 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div style="background-color:#F8F8F8" >
+<br>
+
+<div style="padding:10px;" class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form  method="POST" > 
+				{%csrf_token%}
+				{{myFilter.form}}
+		    <button class="btn btn-info" type="submit">Buscar</button>
+		  </form>
+
+		</div>
+	</div>
+	
+</div>
+
+<br>
+
+<style>
+table, th, td{ 
+padding: 10px;
+font-weight: lighter;
+}
+
+th{
+	width: 70%;
+
+}
+
+
+
+</style>
+
+<div><table style = "font-family:helvetica;" class="equal-width">
+<thead>
+  <tr>
+    <th align="center" valign="top" rowspan="3" colspan="2"><div style="padding:30px" class="card card-body">
+	<h5>Normas:</h5>
+	<br>
+		<ul>
+			<li>
+				Esta biblioteca es de uso interno de la militancia de Primero Justicia y solo debe compartirse con miembros de nuestro partido.
+			</li>
+			<li>
+				El uso de esta biblioteca es con fines exclusivamente de formación política de nuestra militancia y no tiene fines de lucro.
+			</li>			
+		</ul>
+	<h5>Consigue libros fácilmente:</h5>
+	<br>
+		<ul>
+			<li>
+				Utiliza el buscador de la biblioteca para encontrar los ejemplares que necesitas consultar.
+			</li>
+			<li>
+				Puedes ingresar a nuestra colección de ejemplar, para verificar la disponibilidad de lo que buscas.
+			</li>			
+		</ul>
+	<br>
+	<h5>¿Quieres colaborar con la biblioteca?:</h5>
+	<br>
+		<ul>
+			<li>
+				Existen dos formas para colaborar con nosotros, la primera es enviando ejemplares para incluir a nuestra Colección en formato .PDF o .ePUB a correo electrónico bibliotecajuangermanroscio@gmail.com
+			</li>
+		</ul>
+	<br>
+	<h5>Consigue libros fácilmente:</h5>
+<br>
+	<ul>
+		<li>
+			Alejandro Conejero
+		</li>
+		<li>
+			Elber Ortiz
+		</li>
+		<li>
+			Esteban Roa
+		</li>
+		<li>
+			Silvia Solorzano
+		</li>				
+	</ul>
+</div></th>
+    <th align="center" valign="top">
+    	<div style="background-color:#5bc0de; color:#f9f9f9; padding:40px" class="card card-body">
+			<h5>Libros disponibles:</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">52</h1>
+		</div>
+	</th>
+  </tr>
+  <tr>
+    <td><div  class="card card-body">
+			<h5>Información de contacto</h5>
+			<hr>
+			<p>Email: bibliotecajuvenilpj@gmail.com</p>
+			<p>Phone: +58-(414)7728253 </p>
+		</div></td>
+  </tr>
+  <tr>
+    <td><div class="card card-body">
+    		<a class="btn btn-sm btn-info" href=""> Donar </a>
+    	</div>
+	</td>
+  </tr>
+</thead>
+</table></div>
+</div>			
+{% endblock %}
+
