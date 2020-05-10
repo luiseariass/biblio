@@ -4,6 +4,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+ACCOUNT_ACTIVATION_DAYS = 1 # One-day activation window
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -17,6 +18,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'wkp)es__q5a2wj0*_6m%z6e)t5trur
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 ALLOWED_HOSTS = ['*']
 
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/'
+
 
 # Application definition
 
@@ -29,6 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalogo',
     'gdstorage',
+    'home',
+    'six',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +127,5 @@ DATABASES['default'].update(db_from_env)
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

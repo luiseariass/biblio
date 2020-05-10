@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Su cuenta no tiene acceso a esta página. Para proceder,
+    inicie sesión con una cuenta que tenga acceso.</p>
+    {% else %}
+    <p>Inicie para poder ver la biblioteca</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+<div>
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+</div>
+<div>
+  <td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+</div>
+
+<div>
+  <input type="submit" value="Ingresar" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+<div>
+  <a href="{% url 'sign_up' %}"> Registrate</a>
+</div>
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Perdiste la contraseña?</a></p>
+
+{% endblock %}

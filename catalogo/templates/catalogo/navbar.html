@@ -16,6 +16,11 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'book_list' %}"><h5>Libros</h5></a>
       </li>
+      {% if user.is_authenticated %}
+      <li>
+        <a href="{% url 'logout'%}">Salir</a>
+      </li>
+      {% endif %} 
     </ul>
   </div>
   <div>

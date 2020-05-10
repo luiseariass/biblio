@@ -4,8 +4,11 @@ from catalogo.models import Book, Author, Genre, Format
 import django_filters
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+@login_required
 def index(request):
 
     num_books = Book.objects.all().count()
@@ -30,18 +33,22 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
-class BookDetailView(generic.DetailView):
+class BookDetailView(LoginRequiredMixin,generic.DetailView):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
     model = Book
 
 
-class AuthorFilter(django_filters.FilterSet):
+class AuthorFilter(LoginRequiredMixin,django_filters.FilterSet):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
     name = django_filters.CharFilter(label='Nombre', lookup_expr='icontains')
 
     class Meta:
         model = Author
         fields = ['name']
 
-
+@login_required
 def author_list(request):
     authors = Author.objects.all()
     filtroautor = AuthorFilter(request.GET, queryset=authors)
@@ -50,12 +57,15 @@ def author_list(request):
     return render(request, 'catalogo/author_list2.html', context)
 
 
-class AuthorDetailView(generic.DetailView):
+class AuthorDetailView(LoginRequiredMixin,generic.DetailView):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
     model = Author
 
 
-class BookFilter(django_filters.FilterSet):
-
+class BookFilter(LoginRequiredMixin,django_filters.FilterSet):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
     title = django_filters.CharFilter(label='Título', lookup_expr='icontains')
     author__name = django_filters.CharFilter(label='Autor', lookup_expr='icontains')
 
@@ -63,7 +73,7 @@ class BookFilter(django_filters.FilterSet):
         model = Book
         fields = ['title', 'author__name', 'format']
 
-
+@login_required
 def book_list(request):
     print('entre a book_list')
     books = Book.objects.all()
