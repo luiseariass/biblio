@@ -21,8 +21,8 @@ def index(request):
             title = request.POST.get('title', False)
             author = request.POST.get('author__name', False)
             format= request.POST.get('format', False)
-            url = f"http://127.0.0.1:8000/catalogo/books/?title={title}&author__name={author}&format={format}"
-            print(url)
+            domain = request.build_absolute_uri('/')[:-1]
+            url = f"{domain}/catalogo/books/?title={title}&author__name={author}&format={format}"
             return redirect(url)
 
     context = {
