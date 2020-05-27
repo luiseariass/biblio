@@ -50,7 +50,7 @@ class Book(models.Model):
     def file_link(self):
 
         if self.file:
-            return ("{}".format(self.file.url))
+            return ("{}".format(self.file.url) + chr(37)+"27")
         else:
             return "No attachment"
 
