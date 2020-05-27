@@ -76,10 +76,11 @@ class BookFilter(LoginRequiredMixin,django_filters.FilterSet):
 @login_required
 def book_list(request):
     print('entre a book_list')
+    num_books = Book.objects.all().count()
     books = Book.objects.all()
     myFilter = BookFilter(request.GET, queryset=books)
     books = myFilter.qs
-    context = {'myFilter': myFilter, 'books': books}
+    context = {'myFilter': myFilter, 'books': books,'num_books': num_books }
     return render(request, 'catalogo/book_list2.html', context)
 
 

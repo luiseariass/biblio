@@ -10,7 +10,6 @@
 		<div  class="card card-body">
 			<h5>Colabore con la biblioteca:</h5>
 			<hr>
-			<a class="btn btn-outline-info  btn-sm btn-block" href="">Cargue un libro</a>
 			<a class="btn btn-outline-info  btn-sm btn-block" href="">Recomendar un libro</a>
 
 		</div>
@@ -19,8 +18,8 @@
 		<div  class="card card-body">
 			<h5>Información de contacto</h5>
 			<hr>
-			<p>Email: bibliotecajuvenilpj@gmail.com</p>
-			<p>Phone: +58-(414)7728253 </p>
+			<p>Email: <a href="mailto:bibliotecajuvenilpj@gmail.com">bibliotecajuvenilpj@gmail.com</a></p> 
+			<p>Telefono:   <a href="https://wa.me/584141485753" target="_blank"> +58-(414)1485753 </a>  </p>
 		</div>
 	</div>
 
@@ -28,7 +27,7 @@
 		<div  class="card card-body">
 			<h5>Libros disponibles:</h5>
 			<hr>
-			<h1 style="text-align: center;padding: 10px">52</h1>
+			<h1 style="text-align: center;padding: 10px">{{ num_books }}</h1>
 		</div>
 	</div>
 </div>
@@ -69,7 +68,7 @@
 					<td><a href="{{ obj.author.get_absolute_url }}">{{ obj.author.name }}</a> </td>
 					<td> {{obj.genre.all|join:", "}}</td>
 					<td>{{obj.format}}</td>
-					<td><a class="btn btn-sm btn-info" href="obj.file.url"> Descargar </a></td>
+					<td><a class="btn btn-sm btn-info" href="{{obj.file_link}}" target="_blank"> Descargar </a></td>
 				</tr>
 				{% endfor %}
 
