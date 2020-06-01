@@ -5,4 +5,19 @@
   <br>
   <p>{{author.biografia}}</p>
 
+ 
+<a class="btn btn-sm btn-info" href="{% url 'authors' %}"> Regresar </a>
+
+<div style="margin-left:20px;margin-top:20px">
+    <h4>Libros del Autor</h4>
+    {% if books %}
+    {% for book in books  %}
+    <p><a href="{% url 'book-detail' book.id %}"> {{book.title}}</a><p>
+    <p>{{book.summary}}</p>             
+    {% endfor %}  
+    {% else %}
+    <p>Not found book</p> 
+    {% endif %}
+  </div>
+
 {% endblock %}

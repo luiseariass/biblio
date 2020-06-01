@@ -37,6 +37,7 @@ class BookDetailView(LoginRequiredMixin,generic.DetailView):
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
     model = Book
+    books = Book.objects.all()
 
 
 class AuthorFilter(LoginRequiredMixin,django_filters.FilterSet):
@@ -61,6 +62,11 @@ class AuthorDetailView(LoginRequiredMixin,generic.DetailView):
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
     model = Author
+    paginate_by=2
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['books'] = Book.objects.filter(author_id=kwargs['object'].id)
+        return context
 
 
 class BookFilter(LoginRequiredMixin,django_filters.FilterSet):
