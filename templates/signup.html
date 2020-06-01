@@ -1,21 +1,43 @@
 {% extends "base_generic.html" %}
+{% load static %}
 
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="{% static '/login.css' %}">
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <br>
+      <img src="{% static 'images/logo.png' %}" id="icon" alt="User Icon" />
+      <br>
+      <br>
+    </div>
+
+    <!-- Login Form -->
+     <form method="post">
     {% csrf_token %}
     {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
+      <input class="fadeIn second" type="{{field.type}}" name="{{field.html_name}}" id="login" class="fadeIn second"  placeholder="{{ field.html_name }}"><br>
         {% for error in field.errors %}
           <p style="color: red">{{ error }}</p>
         {% endfor %}
-      </p>
+      
     {% endfor %}
-    <button type="submit">Sign up</button>
+    <button class="fadeIn fourth" type="submit">Sign up</button>
   </form>
+
+    <!-- Remind Passowrd -->
+    
+  </div>
+</div>
+
 {% endblock %}
+
+

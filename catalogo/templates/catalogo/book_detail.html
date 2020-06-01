@@ -1,10 +1,14 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Title: {{ book.title }}</h1>
+  <h1>{{ book.title }}</h1>
 
+ <div>
   <p><strong>Autor:</strong> <a href="{{book.author.get_absolute_url}}">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
   <p><strong>Genero:</strong> {{ book.genre.all|join:", " }}</p>  
-  <p><strong>Formato:</strong> {{ book.summary }}</p>
+  <p><strong>Formato:</strong> {{ book.format }}</p>
+</div>
+
+<a class="btn btn-sm btn-info" href="{% url 'book_list' %}" target="_blank"> Regresar </a>
 
 {% endblock %}

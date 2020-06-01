@@ -1,41 +1,59 @@
 {% extends "base_generic.html" %}
+{% load static %}
 
 {% block content %}
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="{% static '/login.css' %}">
+
 {% if form.errors %}
+<div class="wrapper fadeInDown">
 <p>Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.</p>
+</div>
 {% endif %}
+
 
 {% if next %}
     {% if user.is_authenticated %}
+    <div>
     <p>Su cuenta no tiene acceso a esta página. Para proceder,
     inicie sesión con una cuenta que tenga acceso.</p>
     {% else %}
     <p>Inicie para poder ver la biblioteca</p>
+    </div>
     {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
-<div>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
-</div>
-<div>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</div>
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <br>
+      <img src="{% static 'images/logo.png' %}" id="icon" alt="User Icon" />
+      <br>
+      <br>
+    </div>
 
-<div>
-  <input type="submit" value="Ingresar" />
-  <input type="hidden" name="next" value="{{ next }}" />
+    <!-- Login Form -->
+    <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+      <input type="text" name="{{ form.username.html_name}}" id="login" class="fadeIn second"  placeholder="correo">
+      <input type="text" name="{{ form.password.html_name }}" id="password" class="fadeIn third"  placeholder="contraseña">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Olvidaste tu contraseña?</a>
+      <br>
+      <a class="underlineHover" href="{% url 'sign_up' %}"> Registrate</a>
+    </div>
+
+  </div>
 </div>
-</form>
-<div>
-  <a href="{% url 'sign_up' %}"> Registrate</a>
-</div>
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Perdiste la contraseña?</a></p>
 
 {% endblock %}
