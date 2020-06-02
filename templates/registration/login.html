@@ -41,8 +41,8 @@
     <!-- Login Form -->
     <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
-      <input type="text" name="{{ form.username.html_name}}" id="login" class="fadeIn second"  placeholder="correo">
-      <input type="text" name="{{ form.password.html_name }}" id="password" class="fadeIn third"  placeholder="contraseña">
+      <input type="text" name="{{ form.username.html_name}}" id="login" class="fadeIn second"  placeholder="Correo">
+      <input type="password" name="{{ form.password.html_name }}" id="pass" class="fadeIn third"  placeholder="Contraseña">
       <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
 

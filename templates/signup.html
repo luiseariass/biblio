@@ -3,41 +3,136 @@
 
 {% block content %}
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <link rel="stylesheet" type="text/css" href="{% static '/login.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+<title>Bootstrap Sign up Form with Icons</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<style type="text/css">
+	.form-control, .form-control:focus, .input-group-addon {
+		border-color: #e1e1e1;
+	}
 
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
+    .form-control, .btn {        
+        border-radius: 3px;
+    }
+	.signup-form {
+		width: 390px;
+		margin: 0 auto;
+		padding: 30px 0;
+	}
+    .signup-form form {
+		color: #999;
+		border-radius: 3px;
+    	margin-bottom: 15px;
+        background: #fff;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+	.signup-form h2 {
+		color: #333;
+		font-weight: bold;
+        margin-top: 0;
+    }
+    .signup-form hr {
+        margin: 0 -30px 20px;
+    }
+	.signup-form .form-group {
+		margin-bottom: 20px;
+    text-align: center;
+	}
+  .logo{
+    margin-bottom: 25px;
+    margin-left: 120px;
+  }
+	.signup-form label {
+		font-weight: normal;
+		font-size: 13px;
+	}
+	.signup-form .form-control {
+		min-height: 38px;
+		box-shadow: none !important;
+	}	
+	.signup-form .input-group-addon {
+		max-width: 42px;
+		text-align: center;
+	}
 
-    <!-- Icon -->
-    <div class="fadeIn first">
-      <br>
-      <img src="{% static 'images/logo.png' %}" id="icon" alt="User Icon" />
-      <br>
-      <br>
-    </div>
+  .input-group{
+    margin-left: 100px;
+  }
 
-    <!-- Login Form -->
-     <form method="post">
+    .signup-form .btn{        
+        font-size: 16px;
+        font-weight: bold;
+		background: #56BAED;
+		border: none;
+		min-width: 140px;
+    }
+	.signup-form .btn:hover, .signup-form .btn:focus {
+		background: #56BAED;
+        outline: none;
+	}
+	.signup-form a {
+		color: #fff;	
+		text-decoration: underline;
+	}
+	.signup-form a:hover {
+		text-decoration: none;
+	}
+	.signup-form form a {
+		color: #19aa8d;
+		text-decoration: none;
+	}	
+	.signup-form form a:hover {
+		text-decoration: underline;
+	}
+	.signup-form .fa {
+		font-size: 21px;
+	}
+	.signup-form .fa-paper-plane {
+		font-size: 18px;
+	}
+	.signup-form .fa-check {
+		color: #fff;
+		left: 17px;
+		top: 18px;
+		font-size: 7px;
+		position: absolute;
+	}
+</style>
+</head>
+<div class="signup-form">
+  <form method="post">
     {% csrf_token %}
+    <br>
+    <img src="{% static 'images/logo.png' %}" width="100px" class="logo" />
+    <br>
+    <hr>
     {% for field in form %}
-      <input class="fadeIn second" type="{{field.type}}" name="{{field.html_name}}" id="login" class="fadeIn second"  placeholder="{{ field.html_name }}"><br>
+      
+    <div class="form-group">
+      <h2>
+        {{ field.label_tag }}
+      </h2>
+			<div class="input-group">			
+          {{ field }}
+      </div>
+      {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
         {% for error in field.errors %}
           <p style="color: red">{{ error }}</p>
         {% endfor %}
-      
+    </div>
     {% endfor %}
-    <button class="fadeIn fourth" type="submit">Sign up</button>
-  </form>
-
-    <!-- Remind Passowrd -->
-    
-  </div>
+     <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
+      </div>
+    </form>
+  <div class="text-center">Ya tienes una cuenta? <a href="{% url 'sign_up' %}">Ingresa aquí</a></div>
 </div>
-
 {% endblock %}
 
 

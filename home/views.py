@@ -28,7 +28,7 @@ def signup(request):
             return redirect('account_activation_sent')
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form })
 def account_activation_sent(request):
     return render(request, 'account_activation_sent.html')
 
